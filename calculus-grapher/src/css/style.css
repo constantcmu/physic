@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.graph-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    position: relative;
+    margin: 20px;
+}
+
+.graph-labels {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.label {
+    font-weight: bold;
+    margin: 10px;
+}
+
+.label.top {
+    color: blue;
+}
+
+.label.bottom {
+    color: red;
+}
+
+.canvas {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 45%;
+    height: 400px;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 20px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.controls input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    margin: 0 5px;
+}
+
+.controls label {
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#graphCanvas {
+    border: 2px solid #ccc;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-left: 40px; /* ให้พื้นที่สำหรับ labels */
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+.scale-controls {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.scale-controls button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.scale-controls button:hover {
+    background: #f0f0f0;
+}
+
+#scaleValue {
+    min-width: 50px;
+    text-align: center;
+    font-family: monospace;
+}
+
+.reset-btn {
+    margin-left: 20px;
+    background-color: #dc3545;
+    border-radius: 4px;
+    padding: 5px 15px;
+}
+
+.reset-btn:hover {
+    background-color: #c82333;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "calculus-grapher",
+  "version": "1.0.0",
+  "description": "A web application for graphing functions and their derivatives.",
+  "main": "src/js/main.js",
+  "scripts": {
+    "start": "live-server src"
+  },
+  "dependencies": {
+    "mathjs": "^10.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
