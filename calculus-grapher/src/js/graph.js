@@ -8,6 +8,8 @@ const SCALE_STEP = 0.25;
 const SCALE = 50; // 1 unit = 50 pixels
 const GRID_SIZE = 20;
 let offsetX, offsetY;
+let step = 0; // เพิ่มตัวแปรสำหรับ animation
+let isPlaying = true; // เพิ่มตัวแปรควบคุมการเล่น
 
 function initializeGraph() {
     const canvas = document.getElementById('graphCanvas');
@@ -100,11 +102,12 @@ function f(x) {
     if (point) {
         return point.y;
     }
-    return Math.sin(x);  // เริ่มต้นเป็น sine curve
+    // เปลี่ยนเป็นฟังก์ชันที่มีการเคลื่อนที่
+    return Math.sin(x + step);  // เพิ่ม step เพื่อให้กราฟเคลื่อนที่
 }
 
 function fPrime(x) {
-    // อนุพันธ์ของ sin(x) คือ cos(x)
+    // อนุพันธ์ของ sin(x + step) คือ cos(x + step)
     if (points.length > 0) {
         // ถ้ามีการเปลี่ยนแปลงกราฟ ใช้การคำนวณอนุพันธ์จากจุด
         const h = 0.1;
@@ -112,7 +115,7 @@ function fPrime(x) {
         const pointAfter = f(x + h);
         return (pointAfter - pointBefore) / (2 * h);
     }
-    return Math.cos(x);  // อนุพันธ์ของ sin(x)
+    return Math.cos(x + step);
 }
 
 function plotGraphs() {
@@ -222,6 +225,10 @@ function resetGraph() {
     // รีเซ็ตทุกค่ากลับไปเป็นค่าเริ่มต้น
     points = [];
     currentScale = 1.0;
+    step = 0;  // รีเซ็ต step ด้วย
+    isPlaying = true;  // เริ่มเล่นใหม่
+    document.getElementById('playPauseButton').innerHTML = '⏸️';
+    document.getElementById('playPauseButton').classList.remove('paused');
     document.getElementById('scaleValue').textContent = '1x';
     document.getElementById('xPosition').value = '0';
     
@@ -233,6 +240,10 @@ function drawTangentLine(x, ctx) {
     const height = ctx.canvas.height / 2;
     const y = f(x);
     const slope = fPrime(x);
+    
+    // อัพเดตค่าความชันในช่องแสดงผล
+    const slopeInput = document.getElementById('slopeValue');
+    slopeInput.value = slope.toFixed(3);
     
     // จุดกึ่งกลางของเส้นสัมผัส
     const centerX = x * SCALE + offsetX;
@@ -276,6 +287,25 @@ function resizeCanvas() {
     plotGraphs();
 }
 
+function togglePlayPause() {
+    isPlaying = !isPlaying;
+    const button = document.getElementById('playPauseButton');
+    button.innerHTML = isPlaying ? '⏸️' : '▶️';
+    button.classList.toggle('paused');
+    
+    if (isPlaying) {
+        animate();
+    }
+}
+
+function animate() {
+    if (!isPlaying) return;
+    
+    step += 0.05;
+    plotGraphs();
+    requestAnimationFrame(animate);
+}
+
 window.onload = function() {
     initializeGraph();
     const canvas = document.getElementById('graphCanvas');
@@ -298,4 +328,10 @@ window.onload = function() {
     
     // Initial resize
     resizeCanvas();
+
+    // เพิ่ม event listener สำหรับปุ่ม play/pause
+    document.getElementById('playPauseButton').addEventListener('click', togglePlayPause);
+
+    // เริ่ม animation
+    animate();
 };

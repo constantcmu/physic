@@ -195,6 +195,19 @@ button:hover {
     text-align: center;
 }
 
+#slopeValue {
+    font-family: var(--font-mono);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--accent-color);
+    text-align: center;
+    font-weight: 500;
+}
+
+#slopeValue:read-only {
+    cursor: default;
+    border-color: var(--accent-color);
+}
+
 .reset-btn {
     font-family: var(--font-heading);
     margin-left: 20px;
@@ -236,6 +249,65 @@ button:hover {
     color: #666;
 }
 
+.play-btn {
+    margin-left: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.play-btn:hover {
+    background: #3d8b40;
+    transform: scale(1.1);
+}
+
+.play-btn.paused {
+    background: var(--secondary-color);
+}
+
+.play-btn.paused:hover {
+    background: #d81b60;
+}
+
+.additional-graphs {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.graph-box {
+    flex: 1;
+    background: var(--glass-background);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 16px 0 var(--glass-shadow);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.graph-box h3 {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    color: var(--primary-color);
+    margin: 0 0 15px 0;
+}
+
+.graph-box canvas {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .graph-container {
@@ -249,6 +321,10 @@ button:hover {
 
     h1 {
         font-size: 2em;
+    }
+
+    .additional-graphs {
+        flex-direction: column;
     }
 }
 
