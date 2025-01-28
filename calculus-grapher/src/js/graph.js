@@ -260,6 +260,22 @@ function drawTangentLine(x, ctx) {
     ctx.fill();
 }
 
+function resizeCanvas() {
+    const canvas = document.getElementById('graphCanvas');
+    const wrapper = canvas.parentElement;
+    
+    // Set canvas size to match wrapper size
+    canvas.width = wrapper.clientWidth;
+    canvas.height = wrapper.clientHeight;
+    
+    // Recalculate offsets
+    offsetX = canvas.width / 2;
+    offsetY = canvas.height / 4;
+    
+    // Redraw graph
+    plotGraphs();
+}
+
 window.onload = function() {
     initializeGraph();
     const canvas = document.getElementById('graphCanvas');
@@ -277,5 +293,9 @@ window.onload = function() {
     
     document.getElementById('xPosition').addEventListener('input', plotGraphs);
     
-    plotGraphs();
+    // Add resize listener
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Initial resize
+    resizeCanvas();
 };
