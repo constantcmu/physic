@@ -25,7 +25,7 @@ function drawGrid(ctx, isTop) {
 
     // วาดเส้นกริด
     ctx.beginPath();
-    ctx.strokeStyle = '#e0e0e0';
+    ctx.strokeStyle = '#E0E0E0';
     ctx.lineWidth = 0.5;
 
     // เส้นตั้ง
@@ -60,6 +60,8 @@ function drawGraph(fx, ctx, color, isTop) {
     ctx.beginPath();
     ctx.strokeStyle = color;
     ctx.lineWidth = 2.5;
+    ctx.shadowColor = 'rgba(0,0,0,0.1)';
+    ctx.shadowBlur = 5;
 
     // ปรับการวาดให้ละเอียดขึ้น
     const step = 1;  // ลดขนาด step เพื่อให้เส้นโค้งเรียบขึ้น
@@ -245,6 +247,8 @@ function drawTangentLine(x, ctx) {
     ctx.beginPath();
     ctx.strokeStyle = 'green';
     ctx.lineWidth = 1;
+    ctx.shadowColor = 'rgba(0,0,0,0.1)';
+    ctx.shadowBlur = 3;
     ctx.moveTo(centerX - dx, centerY + dy);
     ctx.lineTo(centerX + dx, centerY - dy);
     ctx.stroke();
